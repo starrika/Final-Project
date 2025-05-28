@@ -1,5 +1,5 @@
 # Final-Project
-• repository
 
-• live website
+- [Github Repository](link)
+- Live Website(link) 
 
