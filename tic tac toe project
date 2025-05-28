@@ -1,0 +1,173 @@
+<html>
+    <head>
+        <style>
+             body {
+                  display: flex;
+                  align items: center;
+                  justify-content: center;
+                  font-family: 'Georgia';
+                  background: radial-gradient(
+                  rgba(165, 217, 232, 1) 0%,
+                  rgba(240, 238, 218, 1) 55%,
+                  rgba(162, 114, 204, 1) 120%
+                  
+                  );
+                  color: rgb(130, 86, 168);
+                  text-align: center;
+          }
+    
+  .tile{
+    padding:35px;
+    border-radius: 8px;
+    margin-top: 5px;
+    box-shadow: 10px;
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
+    font-family: "sans-serif";
+}
+          .tile:hover{
+            background: dark-grey;
+          }
+ 
+          button {
+  background-color: white;
+  border: none;
+  border-radius: 4px;
+  color: black;
+  padding: 6px 8px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  font-family: 'Monaco';
+  margin-top: 18px;
+  
+  }
+          button:hover {
+            background color: #000000;
+            color: rgb(96, 189, 96);
+          }
+          
+                   
+</style>
+  <main>
+    <body>
+           
+      <h1>Tic Tac Toe </h1>
+       <p id="message">Click a box to start! </p>
+      
+    <div class= "row">
+       <div class= "row">
+        <button class = "tile" id = "tile00" onclick="tileSelect(0)">-</button>
+        <button class = "tile" id = "tile10" onclick="tileSelect(1)">-</button>
+        <button class = "tile" id = "tile20" onclick="tileSelect(2)">-</button>
+    </div>
+    <div class = "row">
+        <button class = "tile" id = "tile01" onclick="tileSelect(3)">-</button>
+        <button class = "tile" id = "tile11" onclick="tileSelect(4)">-</button>
+        <button class = "tile" id = "tile21" onclick="tileSelect(5)">-</button>
+    </div>
+    <div class = "row">
+       <button class = "tile" id = "tile02" onclick="tileSelect(6)">-</button>
+       <button class = "tile" id = "tile12" onclick="tileSelect(7)">-</button>
+       <button class = "tile" id = "tile22" onclick="tileSelect(8)">-</button>
+    </div>
+      <rect>
+      
+
+<button onclick="newGame()">New Game</button>
+        
+          </main>
+  <script>
+    let gridSpaces = []
+    gridSpaces.push(0,0,0,0,0,0,0,0,0);
+    let P1turn = true;
+    let playerWon = 0;
+    
+    const tileX0Y0 = document.getElementById("tile00");
+    const tileX1Y0 = document.getElementById("tile10");
+    const tileX2Y0 = document.getElementById("tile20");
+    const tileX0Y1 = document.getElementById("tile01");
+    const tileX1Y1 = document.getElementById("tile11");
+    const tileX2Y1 = document.getElementById("tile21");
+    const tileX0Y2 = document.getElementById("tile02");
+    const tileX1Y2 = document.getElementById("tile12");
+    const tileX2Y2 = document.getElementById("tile22");
+    
+    const msg = document.getElementById("message");
+    
+    let tiles = []
+    tiles.push(tileX0Y0,tileX1Y0,tileX2Y0,tileX0Y1,tileX1Y1,tileX2Y1,tileX0Y2,tileX1Y2,tileX2Y2);
+    
+    function tileSelect(x){
+      if (playerWon === 0){
+        if(gridSpaces[x] === 0){
+          if (P1turn === true){
+            gridSpaces[x] = 1;
+            tiles[x].style.color = "Teal";
+         }else{    
+            gridSpaces[x] = 2;
+           tiles[x].style.color = "Salmon";
+         }
+        }
+        render();
+        logic();
+        P1turn = !P1turn;
+      }
+    }
+    
+    
+    function render(){
+      for (let i = 0;i<9; i++){
+        if (gridSpaces[i] === 1){
+          tiles[i].textContent = "X";
+        }else if (gridSpaces[i] === 2){
+          tiles[i].textContent = "O";
+        }
+      }
+    }
+    
+    function logic(){
+      for (let i = 0; i < 9; i++){
+        if (i === 0 || i === 3 || i === 6){
+          if (gridSpaces[i] != 0 && gridSpaces[i] == gridSpaces [i+1] && gridSpaces [i+1] == gridSpaces [i+2]){
+            playerWon = true;
+          }  
+        }
+        if (i === 0 || i === 1 || i === 2){
+          if (gridSpaces[i] != 0 && gridSpaces[i] == gridSpaces[i+3] && gridSpaces[i+3] == gridSpaces[i+6]){
+            playerWon = true;
+          }
+        } 
+        if (i === 0){
+          if (gridSpaces[0] != 0 && gridSpaces[0] == gridSpaces[4] && gridSpaces[4] == gridSpaces[8]){
+            playerWon = true;
+          }
+        }
+        if (i === 2){
+          if (gridSpaces[2] != 0 && gridSpaces[2] == gridSpaces[4] && gridSpaces[4] == gridSpaces[6]){
+            playerWon = true;
+          }
+        }
+      }  
+      if (playerWon){
+        if (P1turn){
+          playerWon = 1;
+        }else{
+          playerWon = 2;
+        }
+        msg.textContent = "Player " + playerWon + " Won the game!"
+      }  
+      
+    }      
+    
+    function newGame(){
+      P1turn = true;
+      playerWon = 0;
+      for (let i = 0; i < 9; i++){
+        gridSpaces[i] = 0;
+        tiles[i].textContent = "-";
+      }
+       message.textContent= "Click on a box to start!";
+    }
+    </script>
+</body>
