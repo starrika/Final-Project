@@ -1,26 +1,26 @@
+@import url(https://fonts.googleapis.com/css?family=Cherry+Swash);
 body {
-    font-family: Arial, sans-serif;
-    background-color: white;
-    color: black;
-    margin: 40px;
-    padding: 0;
+  text-align:center;
+  font-family: 'Cherry Swash';
+  background-color: #7F8CAA;
+  color: #333446;
 }
 
-nav a {
-    margin: 0 15px;
-    text-decoration: none;
-    color: black;
-    font-weight: bold;
+a:hover {
+  background-color: lightblue;
+  font-size: 18px;
+  
+a{
+  color: #B8CFCE;
+  font-weight: bold;
+}
+  
 }
 
-nav a:hover {
-    text-decoration: underline;
-}
-
-header {
-    margin-bottom: 20px;
-}
-
-h1 {
-    font-size: 2em;
+img{
+  text-align: center;
+  height: 150px;
+  width: 175px;
+  border-radius: 14px;
+  margin: 10px;
 }
